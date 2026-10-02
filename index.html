@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+</head><body style="margin:0">
+<title>Keel Marks Round 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Page chrome follows the viewer's theme. The brand surfaces inside each card are fixed,
+   because a logo has to be judged on the real ink and the real paper. */
+:root {
+  --page: #e9edf3;
+  --panel: #ffffff;
+  --line: #d3dae5;
+  --text: #0b1220;
+  --muted: #4a5466;
+  --note: #f3f5f9;
+  --letter: #2447d6;
+  --brand-ink: #0b1220;
+  --brand-paper: #f2f4f8;
+  --brand-blue: #2f5bff;
+  --brand-blue-on-ink: #5b80ff;
+  --f-ui: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #05070c; --panel: #0d121c; --line: #1e2636; --text: #eef2f8; --muted: #a9b4c6; --note: #121927; --letter: #8aa4ff;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #05070c; --panel: #0d121c; --line: #1e2636; --text: #eef2f8; --muted: #a9b4c6; --note: #121927; --letter: #8aa4ff;
+}
+
+body { background: var(--page); color: var(--text); font-family: var(--f-ui); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-inline: 20px; padding-block: 44px 64px; display: grid; gap: 36px; }
+
+header { display: grid; gap: 12px; }
+.eyebrow { font-family: var(--f-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+h1 { margin: 0; font-size: clamp(30px, 5vw, 50px); font-weight: 700; letter-spacing: -.03em; line-height: 1.05; text-wrap: balance; }
+header p { margin: 0; color: var(--muted); max-width: 64ch; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr)); gap: 20px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; display: grid; gap: 10px; padding: 18px; min-width: 0; align-content: start; }
+.card-head { display: flex; align-items: baseline; gap: 12px; }
+.letter { font-family: var(--f-mono); font-size: 13px; font-weight: 500; color: var(--letter); }
+.card-head h2 { margin: 0; font-size: 18px; font-weight: 600; letter-spacing: -.01em; }
+.kind { margin-left: auto; font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+/* brand surfaces */
+.on-ink { --ink: var(--brand-paper); --acc: var(--brand-blue-on-ink); background: var(--brand-ink); color: var(--brand-paper); }
+.on-paper { --ink: var(--brand-ink); --acc: var(--brand-blue); background: var(--brand-paper); color: var(--brand-ink); border: 1px solid var(--line); }
+
+.hero { border-radius: 10px; aspect-ratio: 16 / 8; max-width: 100%; display: grid; place-items: center; padding: 20px; }
+.hero svg { height: auto; max-width: 100%; }
+.hero .sym { width: min(42%, 170px); }
+.hero .word { width: min(74%, 380px); }
+.hero .stack { width: min(34%, 140px); }
+
+.uses { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile { border-radius: 10px; min-height: 108px; display: grid; place-items: center; padding: 14px; min-width: 0; }
+
+.lk { display: flex; align-items: center; gap: 12px; }
+.lk-col { flex-direction: column; align-items: flex-start; gap: 8px; }
+.lk-icon { width: 40px; height: 40px; flex: none; }
+.lk-type { display: grid; gap: 7px; justify-items: start; }
+.lk-wm { width: 62px; height: auto; display: block; color: var(--ink); }
+.lk-word { width: 118px; height: auto; display: block; }
+.lk-word5 { width: 96px; height: auto; display: block; color: var(--ink); }
+.lk-stack { width: 44px; height: auto; display: block; flex: none; }
+.ap { font-family: var(--f-ui); font-weight: 600; font-size: 9.5px; letter-spacing: .42em; text-transform: uppercase; opacity: .85; white-space: nowrap; }
+.short .ap { display: none; }
+
+.sizes { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.app { width: 64px; height: 64px; border-radius: 15px; display: grid; place-items: center; }
+.app svg { width: 42px; height: 42px; }
+.fav { width: 32px; height: 32px; border-radius: 7px; display: grid; place-items: center; }
+.fav svg { width: 22px; height: 22px; }
+.fav.s16 { width: 16px; height: 16px; border-radius: 3px; }
+.fav.s16 svg { width: 12px; height: 12px; }
+.size-label { margin-left: auto; font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+
+.idea { margin: 4px 0 0; max-width: 62ch; }
+.watch { margin: 0; padding: 10px 12px; border-radius: 8px; background: var(--note); color: var(--muted); font-size: 13.5px; }
+.watch b { font-weight: 600; color: var(--text); }
+
+footer { color: var(--muted); font-size: 13.5px; max-width: 70ch; }
+
+@media (max-width: 480px) {
+  .uses { grid-template-columns: 1fr; }
+  .wrap { padding-inline: 16px; }
+  .kind { display: none; }
+}
+</style>
+
+<!-- Mark library. Every shape takes its colours from --ink and --acc on the surface it sits on. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="kx"><rect x="0" y="30" width="46" height="42"/></clipPath>
+    <clipPath id="cap-top"><rect x="0" y="0" width="172" height="14"/></clipPath>
+    <clipPath id="cap-bot"><rect x="0" y="18" width="172" height="42"/></clipPath>
+    <clipPath id="capk-top"><rect x="0" y="0" width="43" height="14"/></clipPath>
+    <clipPath id="capk-bot"><rect x="0" y="18" width="43" height="42"/></clipPath>
+    <clipPath id="k5"><rect x="26" y="26" width="54" height="36"/></clipPath>
+    <clipPath id="k7"><rect x="0" y="0" width="40" height="40"/></clipPath>
+
+    <!-- lowercase geometric "keel", drawn as strokes -->
+    <g id="wm-g" fill="none" stroke="currentColor" stroke-width="10">
+      <path d="M5 4V72"/>
+      <g clip-path="url(#kx)"><path d="M8 56L38 22M17 46L40 76"/></g>
+      <path d="M56 51H93"/><path d="M88 51A16 16 0 1 0 83.3 62.3"/>
+      <path d="M102 51H139"/><path d="M134 51A16 16 0 1 0 129.3 62.3"/>
+      <path d="M151 4V72"/>
+    </g>
+
+    <!-- capital KEEL, drawn as strokes -->
+    <g id="caps-g" fill="none" stroke="currentColor" stroke-width="12">
+      <path d="M6 0V60M10 30L38 -6M10 30L38 66"/>
+      <path d="M56 0V60M50 6H84M50 30H80M50 54H84"/>
+      <path d="M100 0V60M94 6H128M94 30H124M94 54H128"/>
+      <path d="M144 0V60M138 54H170"/>
+    </g>
+    <g id="capk-g" fill="none" stroke="currentColor" stroke-width="12">
+      <path d="M6 0V60M10 30L38 -6M10 30L38 66"/>
+    </g>
+  </defs>
+
+  <symbol id="wm" viewBox="0 0 158 76"><use href="#wm-g"/></symbol>
+
+  <!-- A Keel line -->
+  <symbol id="a" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 36H34M70 36H92" style="stroke:var(--ink)"/>
+      <path d="M34 36L60 84L70 36" style="stroke:var(--acc)"/>
+    </g>
+  </symbol>
+
+  <!-- B Sail and keel -->
+  <symbol id="b" viewBox="0 0 100 100">
+    <path d="M44 6V40H75Z" style="fill:var(--ink)"/>
+    <rect x="12" y="45" width="76" height="7" rx="3.5" style="fill:var(--ink)"/>
+    <path d="M28 58H74L61 91Q58 97 54 91Z" style="fill:var(--acc)"/>
+  </symbol>
+
+  <!-- C Ballast -->
+  <symbol id="c" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="38" fill="none" stroke-width="8" style="stroke:var(--ink)"/>
+    <path d="M24.3 54H75.7A26 26 0 0 1 24.3 54Z" style="fill:var(--acc)"/>
+  </symbol>
+
+  <!-- D Submerged: wordmark and K icon -->
+  <symbol id="d-word" viewBox="0 0 172 60">
+    <g clip-path="url(#cap-top)" style="color:var(--ink)"><use href="#caps-g"/></g>
+    <g clip-path="url(#cap-bot)" style="color:var(--acc)"><use href="#caps-g"/></g>
+  </symbol>
+  <symbol id="d" viewBox="-29 -20 100 100">
+    <g clip-path="url(#capk-top)" style="color:var(--ink)"><use href="#capk-g"/></g>
+    <g clip-path="url(#capk-bot)" style="color:var(--acc)"><use href="#capk-g"/></g>
+  </symbol>
+
+  <!-- E Deep k: wordmark and k icon -->
+  <symbol id="e-word" viewBox="0 0 158 110">
+    <g style="color:var(--ink)"><use href="#wm-g"/></g>
+    <path d="M0 78H10C10 90 13 99 18 107C8 101 2 91 0 78Z" style="fill:var(--acc)"/>
+    <rect x="17" y="78" width="139" height="3" style="fill:var(--acc)"/>
+  </symbol>
+  <symbol id="e" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="12" style="stroke:var(--ink)">
+      <path d="M32 6V62"/>
+      <g clip-path="url(#k5)"><path d="M36 50L68 14M45 40L72 70"/></g>
+    </g>
+    <path d="M26 69H38C38 80 42 90 48 98C36 92 28 82 26 69Z" style="fill:var(--acc)"/>
+    <rect x="45" y="69" width="36" height="4" rx="2" style="fill:var(--acc)"/>
+  </symbol>
+
+  <!-- F Steady -->
+  <symbol id="f" viewBox="0 0 100 100">
+    <g fill="none" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M6 50Q13 6 20 50Q26 84 32 50Q37 26 42 50C45 61 47 50 54 50" style="stroke:var(--ink)"/>
+      <path d="M54 50H94" style="stroke:var(--acc)"/>
+    </g>
+  </symbol>
+
+  <!-- G Stack: KE over EL -->
+  <g id="g-g">
+    <g fill="none" stroke-width="10" style="stroke:var(--ink)">
+      <path d="M5 0V40"/>
+      <g clip-path="url(#k7)"><path d="M9 20L30 -6M9 20L30 46"/></g>
+      <path d="M53 0V40M48 5H84M48 20H80M48 35H84"/>
+    </g>
+    <g fill="none" stroke-width="10" style="stroke:var(--acc)">
+      <path d="M5 52V92M0 57H36M0 72H32M0 87H36"/>
+      <path d="M53 52V92M48 87H84"/>
+    </g>
+  </g>
+  <symbol id="g-word" viewBox="0 0 84 92"><use href="#g-g"/></symbol>
+  <symbol id="g" viewBox="-8 -4 100 100"><use href="#g-g"/></symbol>
+</svg>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Keel Autopilot · identity round 2 · 2 Oct 2026</span>
+    <h1>Seven marks, one palette</h1>
+    <p>A keel sits below the waterline. Nobody sees it and the boat does not work without it. Every mark here tries to say that, in the ink and blue already in the logo folder, so the choice is about shape and idea and not about colour.</p>
+    <p>Each one is shown large, then as the full logo on ink, the short logo on paper, and at app and browser tab sizes.</p>
+  </header>
+
+  <main class="grid" id="grid"></main>
+
+  <footer>These are sketches drawn in code. The chosen mark gets its curves and spacing tightened by hand, a heavier cut for the 16 pixel tab, and exports as SVG and PNG. Tell me a letter, or tell me what is wrong with all seven.</footer>
+</div>
+
+<script>
+const VB = { a: "0 0 100 100", b: "0 0 100 100", c: "0 0 100 100", d: "0 0 100 100", e: "0 0 100 100", f: "0 0 100 100", g: "0 0 100 100",
+             wm: "0 0 158 76", "d-word": "0 0 172 60", "e-word": "0 0 158 110", "g-word": "0 0 84 92" };
+const svg = (id, cls) => `<svg class="${cls}" viewBox="${VB[id]}" aria-hidden="true"><use href="#${id}"/></svg>`;
+
+const C = [
+  { id: "a", name: "Keel line", kind: "Symbol",
+    idea: "One line. The waterline runs flat, drops into a single swept fin and carries on. It is the name drawn as simply as it can be.",
+    watch: "Closest in idea to Blade from round 1. The line needs a heavier cut to survive the 16 pixel tab." },
+  { id: "b", name: "Sail and keel", kind: "Symbol",
+    idea: "The boat everyone sees is in ink. The keel underneath is in blue and drawn larger than the sail. The client is the sail and we are the part below.",
+    watch: "The most literal boat of the seven. It could be read as a sailing club." },
+  { id: "c", name: "Ballast", kind: "Symbol",
+    idea: "A ring with weight sitting in the bottom, like a self-righting toy that cannot be tipped over. No boat at all, only what a keel does.",
+    watch: "The most abstract. It needs the name beside it to mean anything." },
+  { id: "d", name: "Submerged", kind: "Wordmark",
+    idea: "The word itself sits in the water. A sliver shows above the line and most of it is below, in blue.",
+    watch: "Type only, so the app icon falls back to the K on its own." },
+  { id: "e", name: "Deep k", kind: "Wordmark",
+    idea: "The lowercase wordmark, with the stem of the k carrying on below the line as the keel blade.",
+    watch: "The blade makes the logo taller, so it needs more room underneath in a website header." },
+  { id: "f", name: "Steady", kind: "Symbol",
+    idea: "A wobbling line that settles and runs straight. This one is about the autopilot half of the name: things were erratic and now they hold course.",
+    watch: "Says nothing about a keel. It could be mistaken for an audio or health brand." },
+  { id: "g", name: "Stack", kind: "Wordmark",
+    idea: "KE over EL in a block. The top row is above the water and the bottom row is below. The block is the app icon with nothing added.",
+    watch: "Four letters turn to texture at tab size." },
+];
+
+const hero = c => c.id === "d" ? svg("d-word", "word") : c.id === "e" ? svg("e-word", "word") : c.id === "g" ? svg("g-word", "stack") : svg(c.id, "sym");
+
+const lockup = (c, short) => {
+  const s = short ? " short" : "";
+  const ap = `<span class="ap">Autopilot</span>`;
+  if (c.id === "d") return `<div class="lk lk-col${s}">${svg("d-word", "lk-word")}${ap}</div>`;
+  if (c.id === "e") return `<div class="lk${s}">${svg("e-word", "lk-word5")}${ap}</div>`;
+  if (c.id === "g") return `<div class="lk${s}">${svg("g-word", "lk-stack")}${ap}</div>`;
+  return `<div class="lk${s}">${svg(c.id, "lk-icon")}<div class="lk-type">${svg("wm", "lk-wm")}${ap}</div></div>`;
+};
+
+document.getElementById("grid").innerHTML = C.map(c => `
+  <article class="card" id="mark-${c.id}">
+    <div class="card-head"><span class="letter">${c.id.toUpperCase()}</span><h2>${c.name}</h2><span class="kind">${c.kind}</span></div>
+    <div class="hero on-ink">${hero(c)}</div>
+    <div class="uses">
+      <div class="tile on-ink">${lockup(c, false)}</div>
+      <div class="tile on-paper">${lockup(c, true)}</div>
+    </div>
+    <div class="sizes">
+      <div class="app on-ink">${svg(c.id, "")}</div>
+      <div class="app on-paper">${svg(c.id, "")}</div>
+      <div class="fav on-ink">${svg(c.id, "")}</div>
+      <div class="fav s16 on-ink">${svg(c.id, "")}</div>
+      <div class="fav s16 on-paper">${svg(c.id, "")}</div>
+      <span class="size-label">app 64 · tab 32 · 16</span>
+    </div>
+    <p class="idea">${c.idea}</p>
+    <p class="watch"><b>Watch for:</b> ${c.watch}</p>
+  </article>`).join("");
+</script>
+
+</body></html>
